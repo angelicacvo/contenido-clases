@@ -1,67 +1,60 @@
-## Install NVM
 
-`sudo apt-get update`<br>
-`sudo apt install curl`<br>
-`or if you prefer wget`<br>
-`sudo apt install wget`<br>
+## 📌 Paso 1: Instalar **nvm para Windows**
 
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    # or using wget
-    # wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+En Linux usaste `curl` o `wget`, pero en Windows hay una versión especial de **nvm**:
 
-## Check install
+1. Ve a 👉 [nvm-windows releases](https://github.com/coreybutler/nvm-windows/releases).
+2. Descarga el archivo **nvm-setup.exe**.
+3. Instálalo (esto ya incluye el equivalente al `curl | bash` que hiciste en Linux).
 
-    source ~/.bashrc
-    # or source ~/.zshrc if you are using zsh
+---
 
-## Install Node
+## 📌 Paso 2: Instalar Node.js con nvm
 
-`nvm install <versión>`
-or
-`nvm install --lts`<br>
-`nvm use <versión>`<br>
+```powershell
+nvm install lts
+nvm use lts
+```
 
-# Install TypeScript
+---
 
-`npm install -g typescript`<br>
+## 📌 Paso 3: Instalar TypeScript global
 
-# Use in your project
+```powershell
+npm install -g typescript
+```
 
-`tsc --init`<br>
-`yarn add -D @types/node` or `npm install --save-dev @types/node`
-<br>
+Verificar version:
 
-#### Agregar para ejecutar
+```powershell
+tsc -v
+```
 
-`yarn add -D ts-node ts-node-dev typescript`
-`"scripts": {
-   "dev": "ts-node-dev --respawn --transpile-only index.ts"
-}`
+---
 
-### Para compilar TS a JS solo hay que oprimir el comando `> tsc`
+## 📌 Paso 4: Configurar tu proyecto
 
-Reto de Tipos Avanzados en TypeScript
-Título: Motor de Reglas de Validación en Tipos
-Enunciado
+En tu carpeta del proyecto:
 
-Tu reto consiste en construir un sistema de validación estática únicamente con tipos de TypeScript. No puedes usar funciones ejecutables de JavaScript/TypeScript, ni enums, ni generics, ni map types.
+```powershell
+tsc --init
+npm install --save-dev @types/node
+npm install --save-dev ts-node ts-node-dev typescript
+```
 
-El objetivo es que, dado un objeto y un conjunto de reglas declaradas como tipos literales, el sistema pueda decidir si el objeto es "VALIDO" o "INVALIDO" — únicamente a nivel de tipos.
+---
 
-Requisitos
+## 📌 Paso 6: Configurar `package.json`
 
-Reglas básicas:
+Agrega el script para desarrollo:
 
-"string_no_vacio" → El campo debe ser un string distinto de "".
+```json
+"scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only index.ts"
+}
+```
+**Ejecutar el programa**
+```powershell
+npm run dev
+```
 
-"mayor_18" → El campo debe ser un number estrictamente mayor que 18.
-
-"boolean_true" → El campo debe ser true.
-
-Combinadores de reglas:
-
-AND → Todas las reglas deben cumplirse.
-
-OR → Al menos una regla debe cumplirse.
-
-NOT → La regla debe no cumplirse.
